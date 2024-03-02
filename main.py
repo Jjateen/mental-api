@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import joblib
 import re
 from pydantic import BaseModel
@@ -8,6 +9,7 @@ import nltk
 nltk.download('vader_lexicon')
 
 app = Flask(__name__)
+CORS(app, resources={r"/predict": {"origins": "http://localhost:5173"}}) 
 
 # Initialize SentimentIntensityAnalyzer
 sid = SentimentIntensityAnalyzer()
